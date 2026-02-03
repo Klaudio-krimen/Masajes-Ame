@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios | Âme Masoterapia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ameVerde: '#A8CF45',
+                        ameTurquesa: '#3AB4C9',
+                    },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Nuevo: Fondo fijo e inmersivo */
+        .page-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            /* Imagen de sala de masajes con Buda y ambiente Zen */
+            background-image: url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Nuevo: Capa oscura para que el texto y las tarjetas resalten */
+        .page-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: rgba(28, 25, 23, 0.85); /* Stone-900 con transparencia */
+            backdrop-filter: blur(4px); /* Desefonque sutil para dar profundidad */
+        }
+
+        /* Efecto Glow Potenciado (Mantenido) */
+        .glass { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(58, 180, 201, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.02);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .glass:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 207, 69, 0.5);
+            box-shadow: 0 0 30px rgba(168, 207, 69, 0.25), inset 0 0 10px rgba(168, 207, 69, 0.1);
+        }
+
+        .filter-btn.active { background-color: #3AB4C9; color: white; border-color: #3AB4C9; box-shadow: 0 0 15px #3AB4C9; }
+        .service-card.hidden { display: none; }
+    </style>
+</head>
+<body class="text-white antialiased">
+
+    <div class="page-bg"></div>
+    <div class="page-overlay"></div>
+
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md p-4 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="masajesame.html" class="flex items-center space-x-2 text-ameTurquesa hover:text-ameVerde transition">
+                <i class="fas fa-arrow-left"></i>
+                <span class="text-[10px] uppercase tracking-widest font-bold">Volver</span>
+            </a>
+            <img src="logo.jpg" alt="Âme" class="h-10">
+            <div class="w-20"></div>
+        </div>
+    </nav>
+
+    <div class="relative z-10">
+        <section class="pt-32 pb-12 text-center">
+            <h1 class="font-serif text-5xl md:text-7xl mb-4 italic leading-tight drop-shadow-lg">Nuestra <span class="text-ameVerde not-italic">Carta</span></h1>
+            <p class="text-stone-300 text-sm tracking-[0.3em] uppercase font-bold">Bienestar Integral & Zen</p>
+        </section>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-12 px-6">
+            <button onclick="filterServices('all')" class="filter-btn active px-6 py-2 rounded-full border border-white/20 text-xs uppercase tracking-widest transition hover:bg-white/10">Todos</button>
+            <button onclick="filterServices('relajacion')" class="filter-btn px-6 py-2 rounded-full border border-white/20 text-xs uppercase tracking-widest transition hover:bg-white/10">Relajación</button>
+            <button onclick="filterServices('terapeutico')" class="filter-btn px-6 py-2 rounded-full border border-white/20 text-xs uppercase tracking-widest transition hover:bg-white/10">Terapéuticos</button>
+            <button onclick="filterServices('estetica')" class="filter-btn px-6 py-2 rounded-full border border-white/20 text-xs uppercase tracking-widest transition hover:bg-white/10">Estética</button>
+        </div>
+
+        <section class="max-w-7xl mx-auto px-6 pb-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
+            
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="relajacion">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-ameTurquesa">Masaje de Relajación</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Movimientos rítmicos y suaves para eliminar el estrés mental y físico, mejorando la circulación.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20un%20Masaje%20de%20Relajación" target="_blank" class="bg-ameTurquesa hover:bg-ameVerde text-white px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="relajacion">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-ameTurquesa">Masaje Craneal</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Liberación de tensión acumulada en cráneo, cuello y hombros. La solución ideal para migrañas.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20un%20Masaje%20Craneal" target="_blank" class="bg-ameTurquesa hover:bg-ameVerde text-white px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="relajacion">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-ameTurquesa">Piedras Calientes</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Calor volcánico que penetra la musculatura profunda, relajando y equilibrando tu energía vital.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20un%20Masaje%20con%20Piedras%20Calientes" target="_blank" class="bg-ameTurquesa hover:bg-ameVerde text-white px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="relajacion">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-ameTurquesa">Masaje en Silla</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Sesiones ergonómicas breves y efectivas para aliviar espalda alta y cuello en poco tiempo.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20un%20Masaje%20en%20Silla" target="_blank" class="bg-ameTurquesa hover:bg-ameVerde text-white px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="terapeutico">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-ameVerde">Masaje Descontracturante</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Técnica de presión profunda enfocada en liberar nudos musculares y aliviar dolores crónicos.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20un%20Masaje%20Descontracturante" target="_blank" class="bg-ameVerde hover:bg-ameTurquesa text-stone-900 px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="terapeutico">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-ameVerde">Masaje Podal</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Reflexología que estimula puntos específicos de los pies para sanar órganos y reducir estrés.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20un%20Masaje%20Podal" target="_blank" class="bg-ameVerde hover:bg-ameTurquesa text-stone-900 px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="terapeutico">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-ameVerde">Terapia de Ventosas</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Succión terapéutica (Cupping) para oxigenar tejidos, liberar toxinas y acelerar la recuperación.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20una%20Terapia%20de%20Ventosas" target="_blank" class="bg-ameVerde hover:bg-ameTurquesa text-stone-900 px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="terapeutico">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-ameVerde">Presoterapia</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Drenaje mecánico avanzado que mejora el retorno venoso, ideal para piernas cansadas.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20una%20Sesión%20de%20Presoterapia" target="_blank" class="bg-ameVerde hover:bg-ameTurquesa text-stone-900 px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="estetica">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-white">Drenaje Linfático</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Estimulación manual suave para eliminar retención de líquidos y depurar el organismo.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20un%20Drenaje%20Linfático" target="_blank" class="bg-white hover:bg-ameTurquesa text-stone-900 px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="estetica">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-white">Cavitación & RF</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Ultrasonido y Radiofrecuencia para modelado corporal, reducir grasa localizada y reafirmar piel.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20Cavitación%20y%20Radiofrecuencia" target="_blank" class="bg-white hover:bg-ameTurquesa text-stone-900 px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card glass p-8 rounded-[2rem] min-h-[350px]" data-category="estetica">
+                <div>
+                    <h3 class="font-serif text-2xl mb-3 text-white">Ondas Rusas</h3>
+                    <p class="text-stone-200 text-sm leading-relaxed mb-6 font-light">Electroestimulación profunda que tonifica, fortalece y combate la flacidez muscular.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-auto">
+                    <span class="text-ameVerde font-bold text-[10px] uppercase tracking-widest">Masajes Âme</span>
+                    <a href="https://wa.me/56977559889?text=Hola,%20me%20interesa%20agendar%20Ondas%20Rusas" target="_blank" class="bg-white hover:bg-ameTurquesa text-stone-900 px-4 py-2 rounded-full text-xs font-bold transition shadow-lg">Agendar <i class="fas fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        function filterServices(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                    card.classList.add('animate-fade-in'); 
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

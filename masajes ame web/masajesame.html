@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Âme | Masoterapia y Medicina Alternativa</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ameVerde: '#A8CF45',
+                        ameTurquesa: '#3AB4C9',
+                    },
+                    fontFamily: { 
+                        sans: ['Montserrat', 'sans-serif'], 
+                        serif: ['Playfair Display', 'serif'] 
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .parallax { 
+            background-attachment: fixed; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover; 
+        }
+        .overlay-dark { background: rgba(0, 0, 0, 0.7); }
+        
+        /* ESTILOS MÁGICOS */
+
+        /* 1. Marco Fino para el Logo */
+        .logo-frame {
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .logo-frame:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(58, 180, 201, 0.5); /* Glow Turquesa sutil al pasar el mouse */
+            box-shadow: 0 0 20px rgba(58, 180, 201, 0.3);
+        }
+
+        /* 2. Glow Potenciado para Tarjetas de Contacto (Glassmorphism activo) */
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+             transform: translateY(-5px);
+             border-color: rgba(168, 207, 69, 0.6); /* Verde intenso */
+             /* Doble resplandor verde para efecto mágico */
+             box-shadow: 0 0 40px rgba(168, 207, 69, 0.4), inset 0 0 15px rgba(168, 207, 69, 0.2);
+        }
+
+        /* 3. Aura Dorada "Polvo de Hadas" para el Título */
+        @keyframes fairy-shimmer {
+            0%, 100% { text-shadow: 0 0 15px #FFD700, 0 0 30px #FFD700, 0 0 45px #E6C200; }
+            50% { text-shadow: 0 0 25px #FFD700, 0 0 50px #FFD700, 0 0 70px #FFD700, 0 0 90px #E6C200; }
+        }
+        .golden-aura {
+            color: #FFFFFF;
+            /* Múltiples sombras doradas para crear el halo */
+            text-shadow: 0 0 15px #FFD700, 0 0 30px #FFD700, 0 0 45px #E6C200;
+            /* Animación sutil de centelleo */
+            animation: fairy-shimmer 3s infinite alternate ease-in-out;
+        }
+
+        /* 4. Glow para Redes Sociales */
+        .social-glow { transition: all 0.3s ease; }
+        .social-glow:hover {
+            /* Resplandor Turquesa intenso */
+            filter: drop-shadow(0 0 15px rgba(58, 180, 201, 1)); 
+            transform: scale(1.15);
+            color: #3AB4C9; /* Asegura que el icono cambie de color también */
+        }
+
+    </style>
+</head>
+<body class="bg-stone-900 text-white antialiased">
+
+    <nav class="fixed w-full z-50 bg-black/60 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+            <div class="logo-frame">
+                <img src="logo.jpg" alt="Logo Âme" class="h-14 object-contain">
+            </div>
+            
+            <div class="hidden md:flex space-x-10 items-center font-medium uppercase text-[10px] tracking-[0.2em]">
+                <a href="#inicio" class="hover:text-ameTurquesa transition">Inicio</a>
+                <a href="servicios.html" class="hover:text-ameTurquesa transition font-bold text-ameVerde uppercase tracking-normal">Servicios</a>
+                <a href="#especialista" class="hover:text-ameTurquesa transition">Especialista</a>
+                <a href="#contacto" class="hover:text-ameTurquesa transition">Contacto</a>
+                <a href="https://wa.me/56977559889" target="_blank" class="bg-ameVerde hover:bg-ameTurquesa hover:shadow-[0_0_20px_rgba(58,180,201,0.6)] transition-all text-black px-6 py-2 rounded-full font-bold">WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative h-screen flex items-center justify-center parallax" 
+             style="background-image: url('https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?q=80&w=2093&auto=format&fit=crop');">
+        <div class="absolute inset-0 overlay-dark"></div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="font-serif text-5xl md:text-8xl mb-8 leading-tight golden-aura">
+                Masoterapia y <br>
+                <span class="italic font-light">medicina alternativa</span>
+            </h1>
+            <div class="h-1 w-32 bg-ameTurquesa mx-auto mb-10 rounded-full shadow-[0_0_15px_rgba(58,180,201,0.8)]"></div>
+            <a href="servicios.html" class="inline-block glass-card border border-white/20 text-white px-12 py-4 rounded-full font-bold transition-all transform hover:scale-105">
+                Explorar Tratamientos
+            </a>
+        </div>
+    </section>
+
+    <section id="especialista" class="relative py-32 parallax" 
+             style="background-image: url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=2070&auto=format&fit=crop');">
+        <div class="absolute inset-0 bg-stone-900/85"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-20 items-center">
+            <div>
+                <div class="glass-card p-4 rounded-[3rem] shadow-2xl border-2 border-ameTurquesa/20">
+                    <img src="patricia.jpg" alt="Patricia Peña Mendoza" class="rounded-[2.5rem] w-full h-[600px] object-cover shadow-inner">
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h2 class="font-serif text-5xl md:text-7xl text-white italic leading-tight uppercase drop-shadow-lg">Patricia Peña Mendoza</h2>
+                <p class="text-ameVerde text-xl tracking-widest font-semibold uppercase font-bold shadow-ameVerde/50 drop-shadow-md">Técnico Nivel Superior en Masoterapia</p>
+                <div class="h-1 w-20 bg-ameTurquesa shadow-[0_0_10px_rgba(58,180,201,0.8)]"></div>
+                <p class="text-stone-200 leading-relaxed text-lg font-light italic">"Titulada en el Instituto Los Leones."</p>
+                <p class="text-stone-300 leading-relaxed text-lg font-light">
+                    Patricia ofrece un enfoque integral donde la excelencia técnica y la sabiduría de la medicina alternativa se unen para restaurar tu bienestar profundo.
+                </p>
+                <div class="flex items-center space-x-8 pt-4">
+                    <a href="https://www.instagram.com/masajes_ame/?hl=es-la" target="_blank" class="text-4xl text-white social-glow"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/masoterapiasAme?locale=es_LA" target="_blank" class="text-4xl text-white social-glow"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 bg-stone-950 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-5xl italic mb-4 drop-shadow-lg">Contacto Directo</h2>
+                <div class="h-1 w-12 bg-ameVerde mx-auto shadow-[0_0_15px_rgba(168,207,69,0.8)]"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12 text-center">
+                <a href="https://wa.me/56977559889" target="_blank" class="glass-card p-10 rounded-[2rem] group cursor-pointer">
+                    <i class="fab fa-whatsapp text-4xl text-ameVerde mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(168,207,69,0.8)]"></i>
+                    <h3 class="font-bold mb-2 uppercase tracking-widest text-sm">WhatsApp</h3>
+                    <p class="text-stone-400 font-light group-hover:text-white transition-colors">+56 9 7755 9889</p>
+                </a>
+                <a href="mailto:patrcia.mendoza@gmail.com" class="glass-card p-10 rounded-[2rem] group cursor-pointer">
+                    <i class="fas fa-envelope text-4xl text-ameTurquesa mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(58,180,201,0.8)]"></i>
+                    <h3 class="font-bold mb-2 uppercase tracking-widest text-sm">Email</h3>
+                    <p class="text-stone-400 font-light text-sm group-hover:text-white transition-colors">patrcia.mendoza@gmail.com</p>
+                </a>
+                <div class="glass-card p-10 rounded-[2rem] group cursor-default">
+                    <i class="fas fa-map-marker-alt text-4xl text-stone-400 mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:text-ameVerde drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"></i>
+                    <h3 class="font-bold mb-2 uppercase tracking-widest text-sm">Ubicación</h3>
+                    <p class="text-stone-400 font-light uppercase text-xs group-hover:text-white transition-colors">Santiago, Chile</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 bg-stone-900 border-t border-white/5 text-center">
+        <p class="text-stone-600 text-[10px] uppercase tracking-widest">&copy; 2026 Âme Masoterapia. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module">
+        import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0/dist/web.js'
+      
+        Typebot.initBubble({
+          typebot: "lead-generation-62gg9jz",
+          theme: {
+            button: { backgroundColor: "#3AB4C9" },
+            chatWindow: { backgroundColor: "#171923" },
+          },
+        });
+    </script>
+
+</body>
+</html>
